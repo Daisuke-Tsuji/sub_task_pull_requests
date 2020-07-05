@@ -1,2 +1,8 @@
 <h1>こんにちは、<%= current_user.user_name %>さん</h1>
 <p>ユーザー用ページです。</p>
+
+<% if current_user.avatar? %>
+  <img src='<%= current_user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
+<% else %>
+  <image src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
+<% end %>

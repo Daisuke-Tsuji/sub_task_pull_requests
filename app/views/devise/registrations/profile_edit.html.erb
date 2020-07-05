@@ -30,6 +30,11 @@
     <%= f.text_field :phone %>
   </div>
 
+  <div class="field">
+    <%= f.label :profile_imege %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
   <%= f.label :gender %>
       <div class = control> <%#Save changeボタンと横並びにしないため%>
         <%= f.radio_button :gender, "1" %>男
