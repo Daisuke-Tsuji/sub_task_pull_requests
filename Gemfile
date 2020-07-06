@@ -2,16 +2,15 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 gem 'rails',      '6.0.3'
-gem 'bcrypt',     '3.1.13'
 gem 'puma',       '4.3.4'
-gem 'bootstrap',  '4.1.1'
-gem 'pry-rails'
-gem 'jquery-rails'
 gem 'sass-rails', '5.1.0'
 gem 'webpacker',  '4.0.7'
 gem 'turbolinks', '5.2.0'
 gem 'jbuilder',   '2.9.1'
 gem 'bootsnap',   '1.4.5', require: false
+gem 'devise'
+gem 'carrierwave'
+gem 'mini_magick'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'
@@ -40,6 +39,5 @@ group :production do
   gem 'pg', '1.1.4'
 end
 
-# Windows does not include zoneinfo files, so bundle the tzinfo-data gem
+# Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem 'devise'

@@ -1,0 +1,49 @@
+<%= form_for current_user, url: {action: 'profile_update'} do |f| %>
+
+  <div class="field">
+    <%= f.label :full_name %><br />
+    <%= f.text_field :full_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :user_name %><br />
+    <%= f.text_field :user_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <%= f.email_field :email %>
+  </div>
+
+  <div class="field">
+    <%= f.label :website %><br />
+    <%= f.text_field :website %>
+  </div>
+
+  <div class="field">
+    <%= f.label :introduction %><br />
+    <%= f.text_field :introduction %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phone %><br />
+    <%= f.text_field :phone %>
+  </div>
+
+  <div class="field">
+    <%= f.label :profile_imege %><br />
+    <%= f.file_field :avatar %>
+  </div>
+
+  <%= f.label :gender %>
+      <div class = control> <%#Save changeボタンと横並びにしないため%>
+        <%= f.radio_button :gender, "1" %>男
+        <%= f.radio_button :gender, "2" %>女
+        <%= f.radio_button :gender, "9" %>その他
+        <%= f.radio_button :gender, "0" %>回答しない
+      </div>
+
+  <div class="actions">
+    <%= f.submit "Update" %>
+  </div>
+<% end %>

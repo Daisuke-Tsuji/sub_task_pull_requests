@@ -1,8 +1,10 @@
 class User < ApplicationRecord
-
+  mount_uploader :avatar, AvatarUploader
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
-         :authentication_keys => [:user_name,:full_name]
+         :authentication_keys => [:user_name]
          #:confirmable, :lockable, :timeoutable , :trackable
   validates :full_name, :user_name , presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

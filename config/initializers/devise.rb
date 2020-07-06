@@ -14,7 +14,7 @@ Devise.setup do |config|
   # confirmation, reset password and unlock tokens in the database.
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
-  # config.secret_key = '543b6ce729213389097764e3f48b314fb5b0eac607038142287ad7374771f69523bb97e5028adf617bbb75724b51d4f5cd07fefe05ca2b4201e526d91c784244'
+  # config.secret_key = '0b43fde0a9a6eede1cddb57c3a111462a89a018bc685fb9db337beb3ded02b49ba1707ddda2017e2c6cb6959c41de40d6f60346b9067648aed550dbff5d02835'
 
   # ==> Controller configuration
   # Configure the parent class to the devise controllers.
@@ -46,7 +46,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [:user_name]
+   config.authentication_keys = [:user_name]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the
@@ -126,7 +126,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 12
 
   # Set up a pepper to generate the hashed password.
-  # config.pepper = 'e0b9be3e6f0350588ec20cdc573d53dba69c905cd166bb4ecf9da44bd2d7fcf2e89dd9bc42596683589cc1c8b3867f1ce8ec1780682332a6f7bd4bfe8a2f3b32'
+  # config.pepper = '624747432ed07f4a347b4bc1892326bc311943e3092b63cfd89137794033f5a78abac5aa890950ab32988d3ffd8231cde0cf4e099fff61d11db180c81e8d2782'
 
   # Send a notification to the original email when the user's email is changed.
   # config.send_email_changed_notification = false
@@ -160,7 +160,7 @@ Devise.setup do |config|
   config.reconfirmable = true
 
   # Defines which key will be used when confirming an account
-  # config.confirmation_keys = [:email]
+  config.confirmation_keys = [:user_name]
 
   # ==> Configuration for :rememberable
   # The time the user will be remembered without asking for credentials again.
