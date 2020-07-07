@@ -2,7 +2,8 @@ class MicropostsController < ApplicationController
 
 
  def new
-  @micropost = Micropost.new
+   @user = User.find(current_user.id)
+   @micropost = @user.microposts.build
  end
 
 
@@ -10,9 +11,9 @@ class MicropostsController < ApplicationController
    @micropost = current_user.microposts.build(micropost_params)
    if @micropost.save
      flash[:success] = "Micropost created!"
-     redirect_to root_url
+     redirect_to page_path(current_user)
    else
-     render 'static_pages/home'
+     render 'micropost/new'
    end
  end
 
