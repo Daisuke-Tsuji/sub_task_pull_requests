@@ -3,6 +3,8 @@ class PagesController < ApplicationController
   end
 
   def show
+    @user = User.find(current_user.id)
+    @micropost = @user.microposts
   end
 
   def edit

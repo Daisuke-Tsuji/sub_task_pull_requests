@@ -11,6 +11,7 @@ gem 'bootsnap',   '1.4.5', require: false
 gem 'devise'
 gem 'carrierwave'
 gem 'mini_magick'
+gem 'pry-rails'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

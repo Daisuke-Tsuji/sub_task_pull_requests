@@ -6,3 +6,13 @@
 <% else %>
   <image src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
 <% end %>
+
+<div class="col-md-8">
+  <% if @user.microposts.any? %>
+    <h3>Microposts (<%= @user.microposts.count %>)</h3>
+    <ol class="microposts">
+      <%= render @micropost %>
+    </ol>
+    <%= @micropost %>
+  <% end %>
+</div>

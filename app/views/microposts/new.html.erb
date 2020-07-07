@@ -1,0 +1,13 @@
+<%= form_with model: @micropost do |f| %>
+
+ <%= f.label :画像 %><br />
+ <%= f.file_field :image, class: "image" %>
+
+ <%= f.label :コメント %><br />
+ <%= f.text_field :coment, class: "image" %>
+
+ <div class="actions">
+   <%= f.submit "投稿"%>
+ </div>
+
+<% end %>
