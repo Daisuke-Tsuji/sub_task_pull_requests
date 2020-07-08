@@ -23,6 +23,6 @@ class MicropostsController < ApplicationController
 
  private
   def micropost_params
-   params.require(:micropost).permit(:coment, :image)
+   params.require(:micropost).permit(:comment, :image)
   end
 end

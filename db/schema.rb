@@ -10,10 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_06_205047) do
+ActiveRecord::Schema.define(version: 2020_07_08_110648) do
 
   create_table "microposts", force: :cascade do |t|
-    t.text "coment"
+    t.text "comment"
     t.string "image"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
