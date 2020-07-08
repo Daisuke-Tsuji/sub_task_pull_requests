@@ -15,7 +15,8 @@
           <% if user_signed_in? %>
             <strong><%= link_to current_user.user_name, page_path(current_user.id) %></strong>
             <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-            <%= link_to '画像投稿', new_micropost_path%>
+            <%= link_to '画像投稿', new_micropost_path %>
+            <%= link_to 'ホーム', root_path %>
 
           <% else %>
             <%= link_to 'サインアップ', new_user_registration_path %>
