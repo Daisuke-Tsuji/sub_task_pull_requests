@@ -1,0 +1,6 @@
+<span class="user"><%= link_to @micropost.user.user_name, page_path(@micropost.user) %></span>
+<span class="content"><%= @micropost.comment %></span>
+<%= image_tag @micropost.image.to_s %>
+<<span class="timestamp">
+  Posted <%= time_ago_in_words(@micropost.created_at) %> ago.
+</span>
