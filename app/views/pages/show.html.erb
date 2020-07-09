@@ -1,8 +1,8 @@
-<h1>こんにちは、<%= current_user.user_name %>さん</h1>
+<h1><%= @user.user_name %></h1>
 <p>ユーザー用ページです。</p>
 
-<% if current_user.avatar? %>
-  <img src='<%= current_user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
+<% if @user.avatar? %>
+  <img src='<%= @_user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
 <% else %>
   <image src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
 <% end %>
@@ -29,7 +29,7 @@
       <% else %>
         <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
       <% end %>
-      <%= link_to "show", page_path(user) %>
+      <%= link_to "show", page_path(user.id) %>
     </p>
   <% end %>
 <h3>フォロワー一覧</h3>
@@ -41,7 +41,7 @@
       <% else %>
         <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
       <% end %>
-      <%= link_to "show", page_path(user) %>
+      <%= link_to "show", page_path(user.id) %>
     </p>
   <% end %>
 

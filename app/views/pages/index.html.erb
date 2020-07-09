@@ -1,14 +1,11 @@
 <% if user_signed_in? %>
-<h2>ユーザー一覧画面</h2>
+  <% if @feed_items.any? %>
+    <ol class="microposts">
+      <%= render @feed_items %>
+    </ol>
+  <% end %>
+<% else %>
   <% @user.each do |user| %>
-    <p>
-      <%= "id: #{user.id} name: #{user.user_name}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-      <% end %>
-      <%= link_to "show", page_path(user) %>
-    </p>
+    <%= "id: #{user.id} name: #{user.user_name}" %>
   <% end %>
 <% end %>
