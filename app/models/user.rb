@@ -12,6 +12,12 @@ class User < ApplicationRecord
 
   mount_uploader :avatar, AvatarUploader
 
+  has_many :likes, dependent: :destroy
+  has_many :liked_posts, through: :likes, source: :micropost
+  def already_liked?(micropost)
+    self.likes.exists?(micropost_id: micropost.id)
+  end
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,

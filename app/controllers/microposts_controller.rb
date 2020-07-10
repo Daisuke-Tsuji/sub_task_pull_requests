@@ -8,6 +8,7 @@ class MicropostsController < ApplicationController
 
  def show
    @micropost = Micropost.find_by(id:params[:id])
+   @like = Like.new
  end
 
 
