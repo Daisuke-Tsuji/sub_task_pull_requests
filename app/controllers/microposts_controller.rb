@@ -9,6 +9,8 @@ class MicropostsController < ApplicationController
  def show
    @micropost = Micropost.find_by(id:params[:id])
    @like = Like.new
+   @postcomments = @micropost.postcomments
+   @postcomment = @micropost.postcomments.build
  end
 
 

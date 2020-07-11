@@ -2,9 +2,9 @@
 <p>ユーザー用ページです。</p>
 
 <% if @user.avatar? %>
-  <img src='<%= @_user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
+  <img src='<%= @user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
 <% else %>
-  <image src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
+  <img src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
 <% end %>
 
 <%= link_to 'プロフィール変更', profile_edit_path %>
