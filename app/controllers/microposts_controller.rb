@@ -27,6 +27,11 @@ class MicropostsController < ApplicationController
  def destroy
  end
 
+ def search
+    #Viewのformで取得したパラメータをモデルに渡す
+    @search_posts = Micropost.search(params[:search])
+ end
+
 
  private
   def micropost_params

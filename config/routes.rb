@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   root 'pages#index'
   post 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get  'search', to: 'microposts#search'
   resources :pages
   resources :microposts, only: [:new, :show, :create, :destroy] do
     resources :likes, only: [:create, :destroy]

@@ -1,0 +1,8 @@
+<ul><% @search_posts.each do |post| %>
+  <li>
+    <%= link_to post.comment, post %>
+    <%= post.created_at %>
+    <%= image_tag post.image.to_s %>
+  </li>
+  <% end %>
+</ul>
