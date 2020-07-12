@@ -1,0 +1,45 @@
+@import "bootstrap";
+@import 'font-awesome';
+
+body{
+  background-color: #fafafa;
+}
+header{
+  background-color: #ffffff;
+}
+
+.icon_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.pages_icon_image{
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+li {
+  list-style: none;
+}
+
+
+.header-size{
+  width: 60%;
+  margin: 0 auto;
+}
+
+.black{
+  color: black;
+}
+
+.center-by-margin{
+  margin: 0px auto;
+}
+
+.blank_space{
+  height: 100px;
+}

@@ -14,6 +14,9 @@ gem 'mini_magick'
 gem 'pry-rails'
 gem 'omniauth'
 gem 'omniauth-facebook'
+gem 'bootstrap', '4.3.1'
+gem 'jquery-rails'
+gem 'font-awesome-sass', '5.4.1'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

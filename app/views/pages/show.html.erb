@@ -1,26 +1,34 @@
-<h1><%= @user.user_name %></h1>
-<h2><%= @user.full_name %></h2>
-<p>ユーザー用ページです。</p>
 
-<% if @user.avatar? %>
-  <img src='<%= @user.avatar  %>' class="icon_image" alt="ユーザーアイコン">
-<% else %>
-  <img src="/assets/default.jpg" class="icon_image" alt="ユーザーアイコン" %>
-<% end %>
+  <div class="w-50 d-flex justify-content-around d-inline-block center-by-margin">
+    <% if @user.avatar? %>
+      <img src='<%= @user.avatar %>' class =" pages_icon_image" alt = "ユーザーアイコン">
+    <% else %>
+      <img src="/assets/default.jpg" class = "pages_icon_image" alt = "ユーザーアイコン" %>
+    <% end %>
+      <div class="w-80">
+        <div class="d-flex align-items-start">
+          <h3 class="d-inline-block mb-0 mr-3"><%= @user.user_name %></h3>
+          <% if @user == current_user %>
+            <%= link_to 'プロフィール変更', profile_edit_path, class: "black btn btn-light d-inline-block" %>
+          <% else %>
+            <% if current_user.following?(@user) %>
+              <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
+            <% else %>
+              <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
+            <% end %>
+          <% end %>
+        </div>
+        <p class="d-inline-block mr-2">投稿 <%= @user.microposts.count %>件</p>
+        <p class="d-inline-block mr-2"><%= "フォロー: #{@user.follower.count}人" %></p>
+        <p class="d-inline-block"><%= "フォロワー: #{@user.followed.count}人" %></p>
+        <h5><%= @user.full_name %></h5>
+        <p><%= @user.introduction %></p>
+        <a href="<%= @user.website %>"><%= @user.website %></a>
+      </div>
+  </div>
+<div class="blank_space">
 
-<%= link_to 'プロフィール変更', profile_edit_path %>
-
-<p><%= "フォロー数: #{@user.follower.count}" %></p>
-<p><%= "フォロワー数: #{@user.followed.count}" %></p>
-<% unless @user == current_user %>
-  <% if current_user.following?(@user) %>
-    <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST %>
-  <% else %>
-    <%= link_to 'フォローする', follow_path(@user.id), method: :POST %>
-  <% end %>
-<% end %>
-<p></p>
-
+</div>
 <h3>フォロー一覧</h3>
   <% @user.following_user.where.not(id: current_user.id).each do |user| %>
     <p>
@@ -49,7 +57,6 @@
 <div class="col-md-8">
   <% if @user.microposts.any? %>
     <% @micropost.each do |micropost| %>
-      <h3>Microposts (<%= @user.microposts.count %>)</h3>
       <ol class="microposts">
         <%= render micropost %>
       </ol>
