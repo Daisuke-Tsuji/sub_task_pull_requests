@@ -61,5 +61,5 @@
 <h3>いいねしている投稿</h3>
 <% @user.liked_posts.each do |post| %>
   <%= post.user.user_name %>
-  <%= post.image %>
+  <%= image_tag post.image.to_s %>
 <% end %>

@@ -2,10 +2,12 @@ class PostcommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    post = Micropost.find(params[:micropost_id])
-    @postcomment = post.postcomments.build(postcomment_params)
+    @post = Micropost.find(params[:micropost_id])
+    @postcomment = @post.postcomments.build(postcomment_params)
     @postcomment.user_id = current_user.id
+    @comment_item = @postcomment.micropost
     if @postcomment.save
+      @comment_item.create_notification_postcomment!(current_user, @postcomment.id)
       flash[:success] = "コメントしました"
       redirect_back(fallback_location: root_path)
     else

@@ -15,12 +15,16 @@ class User < ApplicationRecord
 
   has_many :likes, dependent: :destroy
   has_many :liked_posts, through: :likes, source: :micropost
+
+  has_many :active_notifications,  class_name: "Notification",
+                                  foreign_key: "visiter_id", dependent: :destroy
+  has_many :passive_notifications, class_name: "Notification",
+                                  foreign_key: "visited_id", dependent: :destroy
+
   def already_liked?(micropost)
     self.likes.exists?(micropost_id: micropost.id)
   end
 
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          :authentication_keys => [:user_name]
@@ -69,5 +73,7 @@ class User < ApplicationRecord
     Micropost.where("user_id IN (#{following_ids})
                      OR user_id = :user_id", user_id: id)
   end
+
+  
 
 end
