@@ -7,6 +7,7 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://kit.fontawesome.com/64a2167754.js" crossorigin="anonymous"></script>
 
   </head>
@@ -30,10 +31,13 @@
                 <i class="fas fa-house-user fa-lg black"></i>
               <% end %>
               <% if unchecked_notifications.any? %>
-                <i class = "fa fa-circle" style="color: gold;"></i>
-              <% end %>
-              <%= link_to notifications_path, method: :get do %>
-                <i class = "fas fa-bell fa-lg black"></i>
+                <%= link_to notifications_path, method: :get do %>
+                    <i class = "fas fa-bell fa-lg "></i>
+                <% end %>
+              <% else %>
+                <%= link_to notifications_path, method: :get do %>
+                    <i class = "fas fa-bell fa-lg black"></i>
+                <% end %>
               <% end %>
 
             <% else %>
