@@ -1,9 +1,9 @@
 <div class="w-50 d-flex justify-content-around d-inline-block center-by-margin">
   <% if @user.avatar? %>
-    <img src='<%= @user.avatar %>' class =" pages_icon_image"
+    <img src='<%= @user.avatar %>' class =" pages_icon_image d-inline-block"
                                     alt = "ユーザーアイコン">
   <% else %>
-    <img src="/assets/default.jpg" class = "pages_icon_image"
+    <img src="/assets/default.jpg" class = "pages_icon_image d-inline-block"
                                     alt = "ユーザーアイコン" %>
   <% end %>
     <div class="w-80">
@@ -64,19 +64,14 @@
     </p>
   <% end %>
 
-<div class="col-md-8">
-  <% if @user.microposts.any? %>
-    <% @micropost.each do |micropost| %>
-      <ol class="microposts">
-        <%= render micropost %>
-      </ol>
-
+<div class="row d-flex flex-row m-5">
+    <% if @user.microposts.any? %>
+      <% @micropost.each do |micropost| %>
+      <div class="col-md-4 col-md-offset-1">
+        <div class="m-4">
+          <%= link_to image_tag(micropost.image.to_s, class: "micropost-image-size"), micropost_path(micropost.id) %>
+        </div>
+      </div>
+      <% end %>
     <% end %>
-  <% end %>
 </div>
-
-<h3>いいねしている投稿</h3>
-<% @user.liked_posts.each do |post| %>
-  <%= post.user.user_name %>
-  <%= image_tag post.image.to_s %>
-<% end %>
