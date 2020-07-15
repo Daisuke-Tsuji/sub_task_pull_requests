@@ -39,7 +39,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def profile_edit
-
+    @user = User.find(current_user.id)
   end
 
   def profile_update
@@ -66,7 +66,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def configure_account_update_params
    devise_parameter_sanitizer.permit(:account_update,
                               keys: [:user_name, :full_name, :email, :website,
-                                     :introduction, :phone, :gender, :avatar])
+                                     :introduction, :phone, :gender, :avatar,
+                                     :remove_avatar])
   end
 
   # The path used after sign up.

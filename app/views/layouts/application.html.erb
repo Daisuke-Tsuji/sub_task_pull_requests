@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
@@ -41,7 +42,7 @@
               <% end %>
 
             <% else %>
-              <%= link_to 'サインアップ', new_user_registration_path %>
+              <%= link_to '新規ユーザー登録', new_user_registration_path %>
               <%= link_to 'ログイン', new_user_session_path %>
             <% end %>
         </nav>

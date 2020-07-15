@@ -28,11 +28,16 @@ header{
   border-radius: 100px;
   object-fit: cover;
 }
-
-li {
-  list-style: none;
+.edit_pages_icon_image{
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  object-fit: cover;
 }
 
+.edit_user_name{
+  font-size: 30px;
+}
 
 .header-size{
   width: 60%;
@@ -54,4 +59,12 @@ li {
 .micropost-image-size{
   width: 100%;
   height: 100%;
+}
+
+.profile_edit_notice{
+  font-size: 8px;
+}
+
+.field{
+  margin: 5px;
 }

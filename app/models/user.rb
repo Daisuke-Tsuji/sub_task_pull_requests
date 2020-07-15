@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  has_many :postcomments
+  has_many :postcomments, dependent: :destroy
   has_many :microposts, dependent: :destroy
 
   has_many :follower, class_name: "Relationship", foreign_key: "follower_id",
@@ -7,9 +7,9 @@ class User < ApplicationRecord
   has_many :followed, class_name: "Relationship", foreign_key: "followed_id",
                        dependent: :destroy # フォロワー取得
   # 自分がフォローしている人
-  has_many :following_user, through: :follower, source: :followed
+  has_many :following_user, through: :follower, source: :followed, dependent: :destroy
   # 自分をフォローしている人
-  has_many :follower_user,  through: :followed, source: :follower
+  has_many :follower_user,  through: :followed, source: :follower, dependent: :destroy
 
   mount_uploader :avatar, AvatarUploader
 
