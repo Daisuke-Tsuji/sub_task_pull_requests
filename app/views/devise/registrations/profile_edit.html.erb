@@ -25,10 +25,9 @@
     <div class="w-100 d-flex justify-content-center m-2">
       <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "font-weight-bolder text-dark" %>
     </div>
-
     <div class="w-100 d-flex justify-content-center m-2">
       <%= button_to "アカウント削除", registration_path(@user),
-             data: { confirm: "Are you sure?" }, method: :delete, class: "font-weight-bolder text-dark" %>
+              data: { confirm: "Are you sure?" }, method: :delete, class: "font-weight-bolder text-dark" %>
     </div>
 
   </div>

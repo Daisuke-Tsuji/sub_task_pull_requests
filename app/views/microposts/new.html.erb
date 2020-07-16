@@ -1,13 +1,20 @@
-<%= form_with model: @micropost do |f| %>
 
- <%= f.label :画像 %><br />
- <%= f.file_field :image, class: "image", accept: "image/jpeg,image/png" %>
+<div class="d-flex justify-content-center">
+  <%= form_with model: @micropost do |f| %>
 
- <%= f.label :コメント %><br />
- <%= f.text_field :comment %>
+    <div class="field">
+      <%= f.label :投稿写真 %><br />
+      <%= f.file_field :image, class: "image", accept: "image/jpeg,image/png" %>
+    </div>
 
- <div class="actions">
-   <%= f.submit "投稿"%>
- </div>
+    <div class="field">
+      <%= f.label :コメント %><br />
+      <%= f.text_field :comment %>
+    </div>
 
-<% end %>
+    <div class="actions">
+      <%= f.submit "投稿"%>
+    </div>
+
+  <% end %>
+</div>

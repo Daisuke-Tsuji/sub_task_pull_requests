@@ -14,23 +14,21 @@
                       class: "black btn btn-light d-inline-block" %>
         <% else %>
           <% if current_user.following?(@user) %>
-            <%= link_to 'フォロー外す', unfollow_path(@user.id), method: :POST,
+            <%= link_to 'フォロー', unfollow_path(@user.id),
                   class: "black btn btn-outline-secondary d-inline-block" %>
           <% else %>
-            <%= link_to 'フォローする', follow_path(@user.id), method: :POST,
+            <%= link_to 'フォローする', follow_path(@user.id),
                   class: "black btn btn-outline-secondaryt d-inline-block" %>
           <% end %>
         <% end %>
       </div>
-      <p class="d-inline-block mr-2">
-        投稿 <%= @user.microposts.count %>件
-      </p>
-      <p class="d-inline-block mr-2">
-        <%= "フォロー: #{@user.follower.count}人" %>
-      </p>
-      <p class="d-inline-block">
-        <%= "フォロワー: #{@user.followed.count}人" %>
-      </p>
+      <div class="">
+        <p class="d-inline-block mr-2">
+          投稿 <%= @user.microposts.count %>件
+        </p>
+        <%= render 'follow_list' %>
+        <%= render 'follower_list' %>
+      </div>
       <h5><%= @user.full_name %></h5>
       <p><%= @user.introduction %></p>
       <a href="<%= @user.website %>"><%= @user.website %></a>
@@ -39,39 +37,23 @@
 <div class="blank_space">
 
 </div>
-<h3>フォロー一覧</h3>
-  <% @user.following_user.where.not(id: current_user.id).each do |user| %>
-    <p>
-      <%= "id: #{user.id} name: #{user.user_name}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-      <% end %>
-      <%= link_to "show", page_path(user.id) %>
-    </p>
-  <% end %>
-<h3>フォロワー一覧</h3>
-  <% @user.follower_user.where.not(id: current_user.id).each do |user| %>
-    <p>
-      <%= "id: #{user.id} name: #{user.user_name}" %>
-      <% if current_user.following?(user) %>
-        <%= link_to 'フォロー外す', unfollow_path(user.id), method: :POST %>
-      <% else %>
-        <%= link_to 'フォローする', follow_path(user.id), method: :POST %>
-      <% end %>
-      <%= link_to "show", page_path(user.id) %>
-    </p>
-  <% end %>
 
-<div class="row d-flex flex-row m-5">
+
+
     <% if @user.microposts.any? %>
       <% @micropost.each do |micropost| %>
-      <div class="col-md-4 col-md-offset-1">
-        <div class="m-4">
-          <%= link_to image_tag(micropost.image.to_s, class: "micropost-image-size"), micropost_path(micropost.id) %>
+      <div class="row d-flex flex-row m-5">
+        <div class="col-md-4 col-md-offset-1">
+          <div class="m-4">
+            <%= link_to image_tag(micropost.image.to_s, class: "micropost-image-size"), micropost_path(micropost.id) %>
+          </div>
         </div>
       </div>
       <% end %>
+    <% else %>
+    <div class="w-100 d-flex justify-content-center">
+      <%= link_to new_micropost_path, method: :get do %>
+        <p class="font-weight-lighter text-dark">画像を投稿しよう！</p>
+      <% end %>
+    </div>
     <% end %>
-</div>
