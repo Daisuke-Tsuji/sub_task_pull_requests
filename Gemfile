@@ -16,7 +16,9 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'bootstrap', '4.3.1'
 gem 'jquery-rails'
-gem 'font-awesome-sass', '5.4.1'
+gem 'font-awesome-sass', '~> 5.13.0'
+gem 'kaminari'
+gem 'ransack'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

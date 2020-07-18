@@ -15,6 +15,9 @@ class PagesController < ApplicationController
   def show
     @user = User.find(params[:id])
     @micropost = @user.microposts
+    @microposts = Micropost.find_by(id:params[:id])
+    @like = Like.new
+    @postcomments = Postcomment.where(micropost_id: @micropost)
   end
 
   def edit

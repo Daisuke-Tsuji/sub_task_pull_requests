@@ -5,14 +5,11 @@
   <%= link_to page_path(notification.visiter) do %>
     <% if visiter.avatar? %>
       <%= image_tag visiter.avatar.to_s,
-      class:"rounded-circle icon_image mr-3 mb-3"%>
+      class:"rounded-circle notification_icon_image mr-3 mb-3"%>
     <% else %>
-      <%= image_tag "/assets/default.jpg",class:"rounded-circle icon_image mr-3 mb-3" %>
+      <%= image_tag "/assets/default.jpg",class:"rounded-circle notification_icon_image mr-3 mb-3" %>
     <% end %>
   <% end %>
-  <%= notification_form(notification) %><span class="moderate-font"><%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
-  <br>
-  <% if !@comment.nil? %>
-    <p class="moderate-font text-center" style="color: #C0C0C0;"><%= @comment %></p>
-  <% end %>
+  <%= notification_form(notification) %><span class="moderate-font text-secondary">
+    <%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
 </div>

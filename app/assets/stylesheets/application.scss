@@ -15,6 +15,13 @@ header{
   object-fit: cover;
 }
 
+.notification_icon_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
 .pages_icon_image{
   width: 150px;
   height: 150px;
@@ -25,6 +32,20 @@ header{
 .micropost_pages_icon_image{
   width: 30px;
   height: 30px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.micropost_modul_pages_icon_image{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.micropost_comment_pages_icon_image{
+  width: 40px;
+  height: 40px;
   border-radius: 100px;
   object-fit: cover;
 }
@@ -69,8 +90,16 @@ header{
   height: 100%;
 }
 
+.micropost-modul-image-size{
+  width: 55%;
+  height: 55%;
+}
+
 .profile_edit_notice{
   font-size: 8px;
+}
+.microposts_time_ago{
+  font-size: 12px;
 }
 
 .field{
