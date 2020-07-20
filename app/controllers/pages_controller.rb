@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :sign_in_required, only: [:show, :edit]
+  before_action :sign_in_required
   before_action :set_user, only: [:show]
 
 

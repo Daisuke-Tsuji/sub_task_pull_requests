@@ -1,4 +1,5 @@
 class RelationshipsController < ApplicationController
+  before_action :sign_in_required
 
   def follow
     @user = current_user.follow(params[:id])

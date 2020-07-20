@@ -8,8 +8,8 @@ Rails.application.routes.draw do
     patch 'profile_update', to: 'users/registrations#profile_update', as: 'profile_update'
   end
   root 'pages#index'
-  get 'follow/:id' => 'relationships#follow', as: 'follow' # フォローする
-  get 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow' # フォロー外す
+  get 'follow/:id' => 'relationships#follow', as: 'follow'
+  get 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
   get  'search', to: 'microposts#search'
   resources :pages
   resources :microposts, only: [:new, :show, :create, :destroy] do

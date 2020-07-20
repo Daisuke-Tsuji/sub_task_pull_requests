@@ -1,4 +1,6 @@
 class LikesController < ApplicationController
+  before_action :sign_in_required
+  
   def create
     @like = current_user.likes.create(micropost_id: params[:micropost_id])
     @micropost = Micropost.find(params[:micropost_id])

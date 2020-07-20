@@ -1,8 +1,4 @@
-<ul><% @search_posts.each do |post| %>
-  <li>
-    <%= link_to post.comment, post %>
-    <%= post.created_at %>
-    <%= image_tag post.image.to_s %>
-  </li>
-  <% end %>
-</ul>
+<% provide(:title,"検索結果") %>
+<% @search_posts.each do |post| %>
+  <%= render post %>
+<% end %>

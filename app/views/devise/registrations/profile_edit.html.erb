@@ -1,35 +1,44 @@
-
+<% provide(:title,"プロフィール変更") %>
 <div class="w-100 align-self-start d-flex justify-content-center">
-  <div class=" w-50 ">
+  <div class="w-50">
     <div class="w-100 d-flex justify-content-end">
-      <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
-        <% if @user.avatar? %>
-          <%= image_tag @user.avatar.to_s, class: "pages_icon_image d-inline-block"%>
-        <% else %>
-          <img src="/assets/default.jpg" class = "pages_icon_image d-inline-block" alt = "" %>
+      <div class="">
+        <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
+          <% if @user.avatar? %>
+            <%= image_tag @user.avatar.to_s,
+                          class: "pages_icon_image d-inline-block"%>
+          <% else %>
+            <img src="/assets/default.jpg"
+                 class = "pages_icon_image d-inline-block"
+                 alt = "#" %>
+          <% end %>
+
+          <div id = "user_img" class="field">
+            <%= f.label :プロフィール写真 %><br/>
+            <%= f.file_field :avatar %>
+          </div>
+          <p><%= f.check_box :remove_avatar %>画像を削除する</p>
         <% end %>
-
-        <div id = "user_img" class="field">
-          <%= f.label :プロフィール写真 %><br/>
-          <%= f.file_field :avatar %>
+        <div class="w-100 m-2">
+          <%= link_to 'パスワードの変更',
+                      edit_user_registration_path,
+                      class: "font-weight-bolder text-dark" %>
         </div>
-
-        <p><%= f.check_box :remove_avatar %>画像を削除する</p>
-
-      <% end %>
+        <div class="w-100 m-2">
+          <%= button_to 'ログアウト',
+                         destroy_user_session_path,
+                         method: :delete,
+                         class: "font-weight-bolder text-dark" %>
+        </div>
+        <div class="w-100 m-2">
+          <%= button_to "アカウント削除",
+                        registration_path(@user),
+                        data: { confirm: "Are you sure?" },
+                        method: :delete,
+                        class: "font-weight-bolder text-dark" %>
+        </div>
+      </div>
     </div>
-
-    <div class="w-100 d-flex justify-content-center m-2">
-      <%= link_to 'パスワードの変更', edit_user_registration_path, class: "font-weight-bolder text-dark" %>
-    </div>
-    <div class="w-100 d-flex justify-content-center m-2">
-      <%= button_to 'ログアウト', destroy_user_session_path, method: :delete, class: "font-weight-bolder text-dark" %>
-    </div>
-    <div class="w-100 d-flex justify-content-center m-2">
-      <%= button_to "アカウント削除", registration_path(@user),
-              data: { confirm: "Are you sure?" }, method: :delete, class: "font-weight-bolder text-dark" %>
-    </div>
-
   </div>
   <div class="d-inline-block w-50">
     <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
@@ -56,8 +65,10 @@
 
       <div class="font-weight-light w-50 d-inline-block mt-3">
         <p class="font-weight-bolder d-inline-block">個人の情報</p>
-        <p class="d-inline-block profile_edit_notice">アカウントがビジネス、ペットなどに使用されている場合でも、
-          個人の情報を入力してください。これは公開プロフィールでは表示されません。</p>
+        <p class="d-inline-block profile_edit_notice">
+          アカウントがビジネス、ペットなどに使用されている場合でも、
+          個人の情報を入力してください。これは公開プロフィールでは表示されません。
+        </p>
       </div>
 
       <div class="field">

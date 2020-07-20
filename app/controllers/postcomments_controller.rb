@@ -1,5 +1,6 @@
 class PostcommentsController < ApplicationController
   before_action :authenticate_user!
+  before_action :sign_in_required
 
   def create
     @post = Micropost.find(params[:micropost_id])

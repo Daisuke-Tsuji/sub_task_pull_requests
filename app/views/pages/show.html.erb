@@ -1,3 +1,4 @@
+<% provide(:title,@user.user_name + "のページ") %>
 <div class="w-50 d-flex justify-content-around d-inline-block center-by-margin">
   <% if @user.avatar? %>
     <img src='<%= @user.avatar %>' class =" pages_icon_image d-inline-block"
