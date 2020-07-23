@@ -1,11 +1,24 @@
 @import "bootstrap";
-@import 'font-awesome';
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body{
   background-color: #fafafa;
 }
 header{
   background-color: #ffffff;
+}
+
+.notice {
+  background-color: #6B9ACF;
+  color: white;
+  text-align: center;
+}
+
+.alert {
+  background-color: red;
+  color: white;
+  text-align: center;
 }
 
 .icon_image {
@@ -93,6 +106,16 @@ header{
 .micropost-modul-image-size{
   width: 55%;
   height: 55%;
+}
+
+.micropost_new_size{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.micropost_new_preview_size{
+  height: 600px;
+  width: 600px;
 }
 
 .profile_edit_notice{

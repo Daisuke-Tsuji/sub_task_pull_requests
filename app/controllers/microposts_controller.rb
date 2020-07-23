@@ -5,6 +5,7 @@ class MicropostsController < ApplicationController
  def new
    @user = User.find(current_user.id)
    @micropost = @user.microposts.build
+   @micropost.image = "micropost.jpg"
  end
 
  def show
@@ -18,10 +19,10 @@ class MicropostsController < ApplicationController
  def create
    @micropost = current_user.microposts.build(micropost_params)
    if @micropost.save
-     flash[:success] = "Micropost created!"
+     flash[:success] = "投稿しました"
      redirect_to page_path(current_user)
    else
-     render 'micropost/new'
+     render 'microposts/new'
    end
  end
 

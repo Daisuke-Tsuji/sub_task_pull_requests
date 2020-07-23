@@ -18,6 +18,7 @@ gem 'jquery-rails'
 gem 'font-awesome-sass', '~> 5.13.0'
 gem 'kaminari'
 gem 'ransack'
+gem 'webpacker',  '4.0.7'
 
 group :development, :test do
   gem 'sqlite3', '1.4.1'

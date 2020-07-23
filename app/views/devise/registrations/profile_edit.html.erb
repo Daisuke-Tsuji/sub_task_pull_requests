@@ -13,11 +13,14 @@
                  alt = "#" %>
           <% end %>
 
-          <div id = "user_img" class="field">
+          <div class="field">
             <%= f.label :プロフィール写真 %><br/>
-            <%= f.file_field :avatar %>
+            <%= f.file_field :avatar, accept: "image/jpeg,image/png"%>
           </div>
           <p><%= f.check_box :remove_avatar %>画像を削除する</p>
+          <div class="actions">
+            <%= f.submit "プロフィール画像を更新する" %>
+          </div>
         <% end %>
         <div class="w-100 m-2">
           <%= link_to 'パスワードの変更',
