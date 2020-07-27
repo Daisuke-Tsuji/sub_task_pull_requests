@@ -28,7 +28,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,:omniauthable,
          :authentication_keys => [:user_name]
-         #:confirmable, :lockable, :timeoutable , :trackable
   validates :full_name, :user_name , presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, length: { maximum: 255 }, allow_blank: true,
@@ -63,6 +62,7 @@ class User < ApplicationRecord
     following_user.include?(user)
   end
 
+  #フォローしているユーザーの投稿表示
   def feed
     following_ids = "SELECT followed_id FROM relationships
                      WHERE follower_id = :user_id"
@@ -70,6 +70,7 @@ class User < ApplicationRecord
                      OR user_id = :user_id", user_id: id)
   end
 
+  #facebookログイン
   def self.find_for_oauth(auth)
     user = User.where(uid: auth.uid, provider: auth.provider).first
 
@@ -83,9 +84,4 @@ class User < ApplicationRecord
     end
     user
   end
-
-
-
-
-
 end

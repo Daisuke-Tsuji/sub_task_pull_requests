@@ -10,11 +10,13 @@ class Micropost < ApplicationRecord
   validates :comment, length: { maximum: 2200 }
   validates :image,   presence: true
 
+  #検索にて、投稿内容と完全一致するものを表示
   def self.search(search)
     return Micropost.all unless search
     Micropost.where(['comment LIKE ?', "%#{search}%"])
   end
 
+  #いいねの通知
   def create_notification_by(current_user)
     notification = current_user.active_notifications.new(
       micropost_id: id,
@@ -24,6 +26,7 @@ class Micropost < ApplicationRecord
     notification.save if notification.valid?
   end
 
+  #コメントの通知
   def create_notification_postcomment!(current_user, postcomment_id)
     # 自分以外にコメントしている人をすべて取得し、全員に通知を送る
     temp_ids = Postcomment.select(:user_id).where(micropost_id: id).where.not(user_id: current_user.id).distinct

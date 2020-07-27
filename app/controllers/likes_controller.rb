@@ -1,16 +1,11 @@
 class LikesController < ApplicationController
   before_action :sign_in_required
-  
+
   def create
     @like = current_user.likes.create(micropost_id: params[:micropost_id])
     @micropost = Micropost.find(params[:micropost_id])
-      #通知の作成
     @micropost.create_notification_by(current_user)
-    respond_to do |format|
-      format.html {redirect_to request.referrer}
-      format.js
-    end
-    #redirect_back(fallback_location: root_path)
+    redirect_back(fallback_location: root_path)
   end
 
   def destroy
