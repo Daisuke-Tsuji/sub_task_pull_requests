@@ -9,6 +9,13 @@ header{
   background-color: #ffffff;
 }
 
+.header-size{
+  width: 60%;
+  margin: 0 auto;
+}
+
+/*フラッシュ*/
+
 .notice {
   background-color: #6B9ACF;
   color: white;
@@ -20,6 +27,8 @@ header{
   color: white;
   text-align: center;
 }
+
+/*それぞれのページのアイコンサイズ*/
 
 .icon_image {
   width: 200px;
@@ -77,27 +86,12 @@ header{
   object-fit: cover;
 }
 
+/*プロフィール編集の名前サイズ*/
 .edit_user_name{
   font-size: 30px;
 }
 
-.header-size{
-  width: 60%;
-  margin: 0 auto;
-}
-
-.black{
-  color: black;
-}
-
-.center-by-margin{
-  margin: 0px auto;
-}
-
-.blank_space{
-  height: 100px;
-}
-
+/*投稿画像のサイズ*/
 .micropost-image-size{
   width: 100%;
   height: 100%;
@@ -118,13 +112,27 @@ header{
   width: 600px;
 }
 
+/*入力フォーム*/
+.field{
+  margin: 5px;
+}
+
+/*その他*/
+.black{
+  color: black;
+}
+
+.center-by-margin{
+  margin: 0px auto;
+}
+
+.blank_space{
+  height: 100px;
+}
+
 .profile_edit_notice{
   font-size: 8px;
 }
 .microposts_time_ago{
   font-size: 12px;
-}
-
-.field{
-  margin: 5px;
 }

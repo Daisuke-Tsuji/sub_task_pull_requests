@@ -9,10 +9,10 @@ class PostcommentsController < ApplicationController
     @comment_item = @postcomment.micropost
     if @postcomment.save
       @comment_item.create_notification_postcomment!(current_user, @postcomment.id)
-      flash[:success] = "コメントしました"
+      flash[:notice] = "コメントしました"
       redirect_back(fallback_location: root_path)
     else
-      flash[:success] = "コメントできませんでした"
+      flash[:alert] = "コメントできませんでした"
       redirect_back(fallback_location: root_path)
     end
   end
