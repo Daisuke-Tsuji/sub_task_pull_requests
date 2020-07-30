@@ -1,0 +1,40 @@
+<button type="button" class="black btn btn-light d-inline-block mr-2 " data-toggle="modal" data-target="#exampleModalScrollable">
+    <%= "フォロー: #{@user.follower.count}人" %> 
+</button>
+
+<div class="modal" id="exampleModalScrollable" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalCenteredLabel">フォロー一覧</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <% @user.following_user.where.not(id: current_user.id).each do |user| %>
+          <div class="d-inline-block w-100 align-middle">
+            <% if user.avatar? %>
+              <img src='<%= user.avatar %>' class ="follows_list_pages_icon_image d-inline-block"
+                                              alt = "ユーザーアイコン">
+            <% else %>
+              <img src="/assets/default.jpg" class = "follows_list_pages_icon_image d-inline-block"
+                                              alt = "ユーザーアイコン" %>
+            <% end %>
+            <p class="d-inline-block m-0 align-middle">
+              <%= link_to user.user_name, page_path(user) %></br>
+              <%= user.full_name %>
+            </p>
+            <div class="float-right mt-1">
+              <% if current_user.following?(user) %>
+                <%= link_to 'フォロー中', unfollow_path(user.id), class: "black btn btn-outline-secondary d-inline-block" %>
+              <% else %>
+                <%= link_to 'フォローする', follow_path(user.id), class: "black btn btn-outline-secondary d-inline-block" %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

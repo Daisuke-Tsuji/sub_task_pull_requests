@@ -1,0 +1,138 @@
+@import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
+
+body{
+  background-color: #fafafa;
+}
+header{
+  background-color: #ffffff;
+}
+
+.header-size{
+  width: 60%;
+  margin: 0 auto;
+}
+
+/*フラッシュ*/
+
+.notice {
+  background-color: #6B9ACF;
+  color: white;
+  text-align: center;
+}
+
+.alert {
+  background-color: red;
+  color: white;
+  text-align: center;
+}
+
+/*それぞれのページのアイコンサイズ*/
+
+.icon_image {
+  width: 200px;
+  height: 200px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.notification_icon_image {
+  width: 100px;
+  height: 100px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.pages_icon_image{
+  width: 150px;
+  height: 150px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.micropost_pages_icon_image{
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.micropost_modul_pages_icon_image{
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.micropost_comment_pages_icon_image{
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.edit_pages_icon_image{
+  width: 70px;
+  height: 70px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+.follows_list_pages_icon_image{
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
+  object-fit: cover;
+}
+
+/*プロフィール編集の名前サイズ*/
+.edit_user_name{
+  font-size: 30px;
+}
+
+/*投稿画像のサイズ*/
+.micropost-image-size{
+  width: 100%;
+  height: 100%;
+}
+
+.micropost-modul-image-size{
+  width: 55%;
+  height: 55%;
+}
+
+.micropost_new_size{
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+}
+.micropost_new_preview_size{
+  height: 600px;
+  width: 600px;
+}
+
+/*入力フォーム*/
+.field{
+  margin: 5px;
+}
+
+/*その他*/
+.black{
+  color: black;
+}
+
+.center-by-margin{
+  margin: 0px auto;
+}
+
+.blank_space{
+  height: 100px;
+}
+
+.profile_edit_notice{
+  font-size: 8px;
+}
+.microposts_time_ago{
+  font-size: 12px;
+}

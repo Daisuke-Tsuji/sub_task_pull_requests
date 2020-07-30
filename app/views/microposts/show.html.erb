@@ -1,0 +1,79 @@
+<% provide(:title,"投稿詳細") %>
+<div class="d-flex justify-content-center">
+  <div class="card w-50 mb-5">
+    <div class="card-body">
+      <% if @micropost.user.avatar? %>
+        <img src='<%= @micropost.user.avatar %>'
+             class ="micropost_pages_icon_image d-inline-block"
+             alt = "ユーザーアイコン">
+      <% else %>
+        <img src="/assets/default.jpg"
+             class = "micropost_pages_icon_image d-inline-block"
+             alt = "ユーザーアイコン" %>
+      <% end %>
+      <p class="card-text d-inline-block">
+        <%= link_to @micropost.user.user_name, page_path(@micropost.user) %>
+      </p>
+    </div>
+    <div class="w-100 d-flex justify-content-center">
+      <%= link_to image_tag(@micropost.image.to_s,
+          class: "micropost-image-size"), micropost_path(@micropost.id) %>
+    </div>
+    <div class="card-body">
+      <p class="card-text d-block m-2">
+        <%= simple_format(@micropost.comment) %>
+      </p>
+      <span class="card-text m-2">
+        <%= time_ago_in_words(@micropost.created_at) %>前
+      </span>
+    </div>
+    <div class="card-footer">
+      <div class="p-2">
+        <h4>いいね件数: <%= @micropost.likes.count %></h4>
+        <% if current_user.already_liked?(@micropost) %>
+          <%= button_to 'いいねを取り消す',
+                        micropost_like_path(@micropost), method: :delete %>
+        <% else %>
+          <%= button_to 'いいね', micropost_likes_path(@micropost) %>
+        <% end %>
+      </div>
+      <div class="p-2">
+        <p>コメント一覧</p>
+        <% @postcomments.each do |c| %>
+          <div class="py-3 px-5">
+            <% unless c.user.blank? %>
+              <div class="d-inline-block d-flex align-items-start w-30">
+                <a href="<%= page_path(c.user_id) %>" >
+                  <% if c.user.avatar? %>
+                    <%= image_tag c.user.avatar.to_s,
+                    class:"micropost_comment_pages_icon_image mr-3 mb-3"%>
+                  <% else %>
+                    <%= image_tag "/assets/default.jpg",
+                        class:"micropost_comment_pages_icon_image mr-3 mb-3" %>
+                  <% end %>
+                </a>
+                <%= c.user.user_name unless c.user.blank? %>
+                <div class="d-inline-block pl-5">
+                  <%= simple_format(c.content) %>
+                  <p class="microposts_time_ago">
+                    <%= time_ago_in_words(c.created_at) %>前
+                  </p>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <br />
+        <% end %>
+      </div>
+      <% if user_signed_in? %>
+        <%= form_with(model: [@micropost, @postcomment], local: true) do |f| %>
+          <%= f.text_area :content, class: "form-control", rows: 5 %>
+          <%= button_tag type: "submit",
+                         class: "btn btn-success float-right mt-1" do %>
+            <i class="far fa-comments"></i> コメントする
+          <% end %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+</div>

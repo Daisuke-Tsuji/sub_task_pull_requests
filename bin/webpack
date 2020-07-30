@@ -7,6 +7,10 @@ require "pathname"
 ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile",
   Pathname.new(__FILE__).realpath)
 
+<<<<<<< HEAD
+require "rubygems"
+=======
+>>>>>>> origin/develop
 require "bundler/setup"
 
 require "webpacker"
