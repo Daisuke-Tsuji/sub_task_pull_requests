@@ -1,0 +1,39 @@
+<% provide(:title,"アカウントの新規作成") %>
+<div class="w-100 d-flex justify-content-center">
+  <div class="w-30 border border-secondary p-5">
+    <h2>新規登録</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :名前 %><br />
+        <%= f.text_field :full_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :ユーザーネーム %><br />
+        <%= f.text_field :user_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :パスワード %><br />
+        <%= f.password_field :password,
+                              autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :パスワードの確認 %><br />
+        <%= f.password_field :password_confirmation,
+                             autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions">
+        <%= f.submit "登録する" %>
+      </div>
+    <% end %>
+    <div class="m-3">
+      <%= link_to '利用規約(ダミー)', "#", class: "m-3" %>
+    </div>
+  </div>
+</div>

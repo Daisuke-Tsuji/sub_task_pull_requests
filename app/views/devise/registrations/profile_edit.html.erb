@@ -1,0 +1,102 @@
+<% provide(:title,"プロフィール変更") %>
+<div class="w-100 align-self-start d-flex justify-content-center">
+  <div class="w-50">
+    <div class="w-100 d-flex justify-content-end">
+      <div class="">
+        <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
+          <% if @user.avatar? %>
+            <%= image_tag @user.avatar.to_s,
+                          class: "pages_icon_image d-inline-block"%>
+          <% else %>
+            <img src="/assets/default.jpg"
+                 class = "pages_icon_image d-inline-block"
+                 alt = "#" %>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :プロフィール写真 %><br/>
+            <%= f.file_field :avatar, accept: "image/jpeg,image/png"%>
+          </div>
+          <p><%= f.check_box :remove_avatar %>画像を削除する</p>
+          <div class="actions">
+            <%= f.submit "プロフィール画像を更新する" %>
+          </div>
+        <% end %>
+        <div class="w-100 m-2">
+          <%= link_to 'パスワードの変更',
+                      edit_user_registration_path,
+                      class: "font-weight-bolder text-dark" %>
+        </div>
+        <div class="w-100 m-2">
+          <%= button_to 'ログアウト',
+                         destroy_user_session_path,
+                         method: :delete,
+                         class: "font-weight-bolder text-dark" %>
+        </div>
+        <div class="w-100 m-2">
+          <%= button_to "アカウント削除",
+                        registration_path(@user),
+                        data: { confirm: "Are you sure?" },
+                        method: :delete,
+                        class: "font-weight-bolder text-dark" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="d-inline-block w-50">
+    <%= form_for current_user, url: {action: 'profile_update'} do |f| %>
+
+      <div class="field">
+        <%= f.label :名前 %><br />
+        <%= f.text_field :full_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :ユーザーネーム %><br />
+        <%= f.text_field :user_name %>
+      </div>
+
+      <div class="field">
+        <%= f.label :ウェブサイト %><br />
+        <%= f.text_field :website %>
+      </div>
+
+      <div class="field">
+        <%= f.label :自己紹介 %><br />
+        <%= f.text_area :introduction %>
+      </div>
+
+      <div class="font-weight-light w-50 d-inline-block mt-3">
+        <p class="font-weight-bolder d-inline-block">個人の情報</p>
+        <p class="d-inline-block profile_edit_notice">
+          アカウントがビジネス、ペットなどに使用されている場合でも、
+          個人の情報を入力してください。これは公開プロフィールでは表示されません。
+        </p>
+      </div>
+
+      <div class="field">
+        <%= f.label :メールアドレス %><br />
+        <%= f.email_field :email %>
+      </div>
+
+      <div class="field">
+        <%= f.label :電話番号 %>
+        <span class="profile_edit_notice">(ハイフン無し)</span><br />
+        <%= f.text_field :phone %>
+      </div>
+
+      <%= f.label :性別 %>
+          <div class = control> <%#Save changeボタンと横並びにしないため%>
+            <%= f.radio_button :gender, "1" %>男
+            <%= f.radio_button :gender, "2" %>女
+            <%= f.radio_button :gender, "9" %>その他
+            <%= f.radio_button :gender, "0" %>回答しない
+          </div>
+
+      <div class="actions">
+        <%= f.submit "更新する" %>
+      </div>
+    <% end %>
+
+  </div>
+</div>

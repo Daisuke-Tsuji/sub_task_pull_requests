@@ -1,0 +1,6 @@
+daisuke:
+  full_name: "tsuji daisuke"
+  user_name: "daisuke"
+  email:     ""
+  encrypted_password: <%= Devise::Encryptor.digest(User, 'password') %>
+  

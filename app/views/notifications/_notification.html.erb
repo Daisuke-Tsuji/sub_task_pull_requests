@@ -1,0 +1,15 @@
+<% visiter = notification.visiter %>
+<% item = notification.micropost %>
+
+<div class="user-view clearfix ">
+  <%= link_to page_path(notification.visiter) do %>
+    <% if visiter.avatar? %>
+      <%= image_tag visiter.avatar.to_s,
+      class:"rounded-circle notification_icon_image mr-3 mb-3"%>
+    <% else %>
+      <%= image_tag "/assets/default.jpg",class:"rounded-circle notification_icon_image mr-3 mb-3" %>
+    <% end %>
+  <% end %>
+  <%= notification_form(notification) %><span class="moderate-font text-secondary">
+    <%= " (#{time_ago_in_words(notification.created_at)} 前)" %></span>
+</div>

@@ -1,15 +1,71 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SubTaskPullRequests</title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title><%= full_title(yield(:title)) %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+            integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous">
+    </script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"></script>
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/64a2167754.js" crossorigin="anonymous"></script>
+
   </head>
 
   <body>
+    <header>
+      <div class="header-size">
+        <nav class = "content-center navbar" >
+          <%= form_tag(search_path,:method => 'get') do %>
+            <%= text_field_tag :search %>
+            <%= submit_tag '検索', :comment => nil %>
+          <% end %>
+            <% if user_signed_in? %>
+              <%= link_to page_path(current_user.id) do %>
+                <i class="fas fa-user fa-lg black"></i>
+              <% end %>
+              <%= link_to new_micropost_path do %>
+                <i class="far fa-plus-square fa-lg black"></i>
+              <% end %>
+              <%= link_to root_path do %>
+                <i class="fas fa-house-user fa-lg black"></i>
+              <% end %>
+              <% if unchecked_notifications.any? %>
+                <%= link_to notifications_path do %>
+                    <i class = "fas fa-bell fa-lg "></i>
+                <% end %>
+              <% else %>
+                <%= link_to notifications_path do %>
+                    <i class = "fas fa-bell fa-lg black"></i>
+                <% end %>
+              <% end %>
+
+            <% else %>
+              <%= link_to '新規ユーザー登録', new_user_registration_path %>
+              <%= link_to 'ログイン', new_user_session_path %>
+            <% end %>
+        </nav>
+      </div>
+    </header>
+    <% flash.each do |key, value| %>
+     <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
+    <div class="blank_space">
+    </div>
+
     <%= yield %>
+
+    <div class="blank_space">
+    </div>
   </body>
 </html>

@@ -1,0 +1,52 @@
+<% provide(:title,"パスワードの変更") %>
+<div class="d-flex justify-content-center">
+  <div class="w-100 d-flex justify-content-center">
+    <% if @user.avatar? %>
+      <img src='<%= @user.avatar %>'
+           class ="edit_pages_icon_image d-inline-block mr-4"
+           alt = "#">
+    <% else %>
+      <img src="/assets/default.jpg"
+           class = "edit_pages_icon_image d-inline-block mr-4"
+           alt = "#" %>
+    <% end %>
+    <p class="card-text d-inline-block edit_user_name">
+      <%= @user.user_name %>
+    </p>
+  </div>
+
+  <div class="w-100 justify-content-center">
+    <%= form_for(resource, as: resource_name,url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>
+          Currently waiting confirmation for: <%= resource.unconfirmed_email %>
+        </div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :現在のパスワード %><br />
+        <%= f.password_field :current_password,
+                             autocomplete: "current-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :新しいパスワード %><br />
+        <%= f.password_field :password,
+                             autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :新しいパスワードを確認 %><br />
+        <%= f.password_field :password_confirmation,
+                             autocomplete: "new-password" %>
+      </div>
+
+      <div class="actions m-4">
+        <%= f.submit "パスワードを変更" %>
+      </div>
+    <% end %>
+  </div>
+
+</div>

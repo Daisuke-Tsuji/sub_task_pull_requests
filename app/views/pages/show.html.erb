@@ -1,0 +1,136 @@
+<% provide(:title,@user.user_name + "のページ") %>
+<div class="w-50 d-flex justify-content-around d-inline-block center-by-margin">
+  <% if @user.avatar? %>
+    <img src='<%= @user.avatar %>'
+         class =" pages_icon_image d-inline-block"
+         alt = "ユーザーアイコン">
+  <% else %>
+    <img src="/assets/default.jpg"
+         class = "pages_icon_image d-inline-block"
+         alt = "ユーザーアイコン" %>
+  <% end %>
+    <div class="w-80">
+      <div class="d-flex align-items-start mb-2">
+        <h3 class="d-inline-block mb-0 mr-3"><%= @user.user_name %></h3>
+        <% if @user == current_user %>
+          <%= link_to 'プロフィール変更', profile_edit_path,
+                      class: "black btn btn-light d-inline-block" %>
+        <% else %>
+          <% if current_user.following?(@user) %>
+            <%= link_to 'フォロー中', unfollow_path(@user.id),
+                  class: "black btn btn-outline-secondary d-inline-block" %>
+          <% else %>
+            <%= link_to 'フォローする', follow_path(@user.id),
+                  class: "black btn btn-outline-secondaryt d-inline-block" %>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="">
+        <p class="d-inline-block mr-2">
+          投稿 <%= @user.microposts.count %>件
+        </p>
+        <%= render 'follow_list' %>
+        <%= render 'follower_list' %>
+      </div>
+      <h5><%= @user.full_name %></h5>
+      <p><%= @user.introduction %></p>
+      <a href="<%= @user.website %>"><%= @user.website %></a>
+    </div>
+</div>
+<div class="blank_space">
+
+</div>
+
+<!-- Button trigger modal -->
+<div class="row d-flex justify-content-center">
+  <% if @user.microposts.any? %>
+    <% @micropost.each do |micropost| %>
+      <div class="m-4 col-3"
+           data-toggle="modal"
+           data-target="#exampleModalScrollable<%=micropost%>">
+        <%= image_tag micropost.image.to_s, class: "micropost-image-size" %>
+      </div>
+    <% end %>
+  <% else %>
+  <div class="w-100 d-flex justify-content-center">
+    <%= link_to new_micropost_path, method: :get do %>
+      <p class="font-weight-lighter text-dark">画像を投稿しよう！</p>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+
+<% @micropost.each do |micropost| %>
+<!-- Modal -->
+  <div class="modal"id="exampleModalScrollable<%=micropost%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalScrollableLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header  justify-content-around">
+          <%= image_tag micropost.image.to_s,
+                        class: "micropost-modul-image-size" %>
+          <div class="w-50">
+            <div class="w-100">
+              <button type="button" class="close " data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <div class="d-flex justify-content-center">
+                <% if @user.avatar? %>
+                  <img src='<%= @user.avatar %>'
+                       class ="micropost_modul_pages_icon_image d-inline-block mr-2"
+                       alt = "ユーザーアイコン">
+                <% else %>
+                  <img src="/assets/default.jpg"
+                       class = "micropost_modul_pages_icon_image d-inline-block mr-2"
+                       alt = "ユーザーアイコン" %>
+                <% end %>
+                <span class="d-flex align-items-center">
+                  <%= link_to @user.user_name, page_path(@user) %>
+                </span>
+              </div>
+            </div>
+            <div class="p-5">
+              <p><%= micropost.comment %></p>
+              <%= link_to "詳細へ" , micropost_path(micropost.id),
+                                    class: "text-primary" %>
+              <p class="float-right text-secondary microposts_time_ago">
+                <%= time_ago_in_words(micropost.created_at) %>前
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-body">
+          <p>コメント一覧</p>
+          <% if micropost.postcomments.any? %>
+            <% @postcomments.each do |c| %>
+              <div class="py-3 px-5">
+                <% unless c.user.blank? %>
+                  <div class="d-inline-block d-flex align-items-start w-30">
+                    <a href="<%= page_path(c.user_id) %>" >
+                      <% if c.user.avatar? %>
+                        <%= image_tag c.user.avatar.to_s,
+                        class:"micropost_comment_pages_icon_image mr-3 mb-3" %>
+                      <% else %>
+                        <%= image_tag "/assets/default.jpg",
+                            class:"micropost_comment_pages_icon_image mr-3 mb-3" %>
+                      <% end %>
+                    </a>
+                    <%= c.user.user_name unless c.user.blank? %>
+                    <div class="d-inline-block pl-5">
+                      <%= simple_format(c.content) %>
+                      <p class="microposts_time_ago">
+                        <%= time_ago_in_words(c.created_at) %>前
+                      </p>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <br />
+            <% end %>
+          <% else %>
+            <p class="text-secondary">現在コメントはありません</p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
